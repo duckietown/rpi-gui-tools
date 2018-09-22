@@ -9,6 +9,7 @@ ENV TERM "xterm"
 ENV LANG C.UTF-8
 ENV LC_ALL C.UTF-8
 ENV ROS_DISTRO kinetic
+ENV QT_X11_NO_MITSHM 1
 
 # install packages
 RUN apt-get update && apt-get install -q -y \
