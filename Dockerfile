@@ -1,4 +1,4 @@
-FROM ros:kinetic-ros-base-xenial
+@channel - I have completed up to and including kinematic and camera calibrations today - once my PR merges and the docs are built I consider everything functional so please report to me any errors you find.FROM ros:kinetic-ros-base-xenial
 
 MAINTAINER Breandan Considine breandan.considine@umontreal.com
 
@@ -64,6 +64,8 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
 		libblas-dev \
 		liblapack-dev \
 		libatlas-base-dev \
+		mesa-utils \
+		libgl1-mesa-glx \
 		# Python Dependencies
 		ipython \
 		python-pip \
