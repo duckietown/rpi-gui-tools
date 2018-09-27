@@ -76,6 +76,7 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
 		python-catkin-tools \
 		python-frozendict \
 		python-pymongo \
+		python-ruamel.yaml \
 	&& rm -rf /var/lib/apt/lists/*
 
 # python libraries
