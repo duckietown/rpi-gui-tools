@@ -1,6 +1,6 @@
-@channel - I have completed up to and including kinematic and camera calibrations today - once my PR merges and the docs are built I consider everything functional so please report to me any errors you find.FROM ros:kinetic-ros-base-xenial
+FROM ros:kinetic-ros-base-xenial
 
-MAINTAINER Breandan Considine breandan.considine@umontreal.com
+LABEL maintainer="Breandan Considine breandan.considine@umontreal.ca"
 
 # switch on systemd init system in container
 ENV INITSYSTEM off
@@ -101,7 +101,7 @@ RUN pip install --upgrade \
 ENV READTHEDOCS True
 
 WORKDIR /home
-RUN git clone https://github.com/duckietown/software
+RUN git clone -b master18 https://github.com/duckietown/software
 RUN cp /home/software/docker/machines.xml /home/software/catkin_ws/src/00-infrastructure/duckietown/machines
 RUN /bin/bash -c "cd /home/software/ && source /opt/ros/kinetic/setup.bash && catkin_make -C catkin_ws/"
 RUN echo "source /home/software/docker/env.sh" >> ~/.bashrc
