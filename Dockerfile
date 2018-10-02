@@ -37,7 +37,15 @@ RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 421C365BD9
 RUN echo "deb http://packages.ros.org/ros/ubuntu `lsb_release -sc` main" > /etc/apt/sources.list.d/ros-latest.list
 
 # install additional ros packages
-RUN apt-get update && apt-get install -y \
+
+ENV DEBIAN_FRONTEND=noninteractive
+RUN apt-get install -y software-properties-common
+
+RUN add-apt-repository ppa:mc3man/xerus-media
+RUN apt-get update
+
+
+RUN apt-get install --no-install-recommends  -y \
         ros-kinetic-robot \
         ros-kinetic-perception \
         ros-kinetic-navigation \
@@ -49,10 +57,9 @@ RUN apt-get update && apt-get install -y \
         ros-kinetic-rqt \
         libqt5gui5 \
         ros-kinetic-rqt-common-plugins \
-    && rm -rf /var/lib/apt/lists/*
-
-# development tools & libraries
-RUN apt-get update && apt-get install --no-install-recommends -y \
+        mplayer\
+        mencoder\
+        ffmpeg\
         emacs \
         vim \
         byobu \
@@ -79,11 +86,10 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
         python-catkin-tools \
         python-frozendict \
         python-pymongo \
-        python-ruamel.yaml \
-    && rm -rf /var/lib/apt/lists/*
+        python-ruamel.yaml
 
 
-
+RUN rm -rf /var/lib/apt/lists/*
 
 
 WORKDIR /home
@@ -92,6 +98,7 @@ RUN git clone --depth 1 -b master18 https://github.com/duckietown/software
 # python libraries
 ENV READTHEDOCS True
 RUN pip install --upgrade -r /home/software/requirements.txt
+
 
 RUN cp /home/software/docker/machines.xml /home/software/catkin_ws/src/00-infrastructure/duckietown/machines
 RUN /bin/bash -c "cd /home/software/ && source /opt/ros/kinetic/setup.bash && catkin_make -C catkin_ws/"
