@@ -47,6 +47,7 @@ RUN apt-get update && apt-get install -y \
         ros-kinetic-rqt \
         ros-kinetic-rqt-common-plugins \
         ros-kinetic-rqt \
+        ros-kinetic-rviz \
         libqt5gui5 \
         ros-kinetic-rqt-common-plugins \
     && rm -rf /var/lib/apt/lists/*
@@ -82,11 +83,9 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
         python-ruamel.yaml \
     && rm -rf /var/lib/apt/lists/*
 
-
-
-
-
 WORKDIR /home
+
+# TODO: Remove this! `git clone` is a recipe for chaos
 RUN git clone --depth 1 -b master18 https://github.com/duckietown/software
 
 # python libraries
