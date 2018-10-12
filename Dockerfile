@@ -47,6 +47,7 @@ RUN apt-get update && apt-get install -y \
 		ros-kinetic-rqt \
     		ros-kinetic-rqt-common-plugins \
                 ros-kinetic-rqt \
+		ros-kinetic-rviz \
                 libqt5gui5 \
                 ros-kinetic-rqt-common-plugins \
     && rm -rf /var/lib/apt/lists/*
