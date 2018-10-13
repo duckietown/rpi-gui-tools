@@ -18,7 +18,7 @@ RUN apt-get update && \
         apt-utils \
         apt-file \
         lsb-release  \
-        software-properties-common
+        software-properties-common \
     && rm -rf /var/lib/apt/lists/*
 
 # Other repos, keys
